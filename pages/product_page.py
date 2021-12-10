@@ -21,13 +21,17 @@ class ProductPage(BasePage):
         assert price_item.text == price_item_in_basket.text, "цена не совпадает"
         print("Цена товара", price_item_in_basket.text)
 
-        #assert self.is_element_present(*ProductPageLocators.PRICE_IN_BASKET), "The shellcoder's handbook"
+
         
     def check_message_about_adding_to_basket(self):
         basket_message = self.browser.find_element(*ProductPageLocators.SUCCESS_MESSAGE)
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Сообщение об успехе отображается, но не должно"
         
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+       "Сообщение об успехе отображается, но не должно"
 
-
-    
+    def check_success_message_is_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Сообщение об успехе не исчезло"
         
