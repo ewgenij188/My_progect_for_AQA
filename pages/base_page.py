@@ -40,7 +40,7 @@ class BasePage():
 
         return True
 
-#формула рассчета времени
+    #формула рассчета времени
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -64,3 +64,6 @@ class BasePage():
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Ссылка для входа не найдена"
 
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "Значок пользователя не отображается," \
+                                                                 " вероятно неавторизованный пользователь"
